@@ -20,8 +20,10 @@ class Calculator extends Component {
     handleClick = (event) => {
         console.log('number is:', event, 'input', this.state.input);
         //if else statements for on clicks of numbers/symbols
+        //set value set to our designated number/symbol
         let value = event;
 
+        //if value is set to equals
         if (value === '=') {
             if (this.state.input !== '') {
                 let answer = '';
@@ -38,18 +40,16 @@ class Calculator extends Component {
                     this.setState({ input: answer, output: '' });
             }
             return;
+            //if value is set to clear, erase
         } else if (value === 'clear') {
             this.setState({ input: '', output: '' });
             return;
-        } else
+        }
+            //if none of the above do the math
+        else
             this.setState({ input: this.state.input += value })
-            return;
+        return;
     };//end handleClick
-
-    //functionality
-    calculation = () => {
-    };//end calculation
-
 
     render() {
         return (
