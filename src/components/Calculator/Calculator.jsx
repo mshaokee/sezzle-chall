@@ -11,50 +11,44 @@ class Calculator extends Component {
 
     //states
     state = {
-        input: 0,
+        input: '',
         output: '',
+        history: '',
     };//end state
 
     //handleClick for numbers
     handleClick = (event) => {
         console.log('number is:', event, 'input', this.state.input);
         //if else statements for on clicks of numbers/symbols
-        if (event === 'clear') {
-            this.setState({ input: 0 })
-        } else if (event === 'one') {
-            this.setState({ input: 1 })
-        } else if (event === 'two') {
-            this.setState({ input: 2 })
-        } else if (event === 'three') {
-            this.setState({ input: 3 })
-        } else if (event === 'four') {
-            this.setState({ input: 4 })
-        } else if (event === 'five') {
-            this.setState({ input: 5 })
-        } else if (event === 'six') {
-            this.setState({ input: 6 })
-        } else if (event === 'seven') {
-            this.setState({ input: 7 })
-        } else if (event === 'eight') {
-            this.setState({ input: 8 })
-        } else if (event === 'nine') {
-            this.setState({ input: 9 })
-        } else if (event === 'zero') {
-            this.setState({ input: 0 })
-        } else if (event === 'dot') {
-            this.setState({ input: '.' })
-        } else if (event === 'addition') {
-            this.setState({ input: '+' })
-        } else if (event === 'subtraction') {
-            this.setState({ input: '-' })
-        } else if (event === 'multiply') {
-            this.setState({ input: '*' })
-        } else if (event === 'division') {
-            this.setState({ input: '/' })
-        } else if (event === 'equals') {
-            this.setState({ output: this.state.input })
-        }; //end if statement
+        let value = event;
+
+        if (value === '=') {
+            if (this.state.input !== '') {
+                let answer = '';
+                try {
+                    answer = eval(this.state.input);
+                }
+                catch (err) {
+                    this.setState({ input: 'ERROR' });
+                }
+                if (answer === undefined) {
+                    this.setState({ input: 'ERROR' });
+                }
+                else
+                    this.setState({ input: answer, output: '' });
+            }
+            return;
+        } else if (value === 'clear') {
+            this.setState({ input: '', output: '' });
+            return;
+        } else
+            this.setState({ input: this.state.input += value })
+            return;
     };//end handleClick
+
+    //functionality
+    calculation = () => {
+    };//end calculation
 
 
     render() {
@@ -67,31 +61,31 @@ class Calculator extends Component {
                 </div>
                 {/* second rows displays: 7, 8, 9, plus sign */}
                 <div>
-                    <Button onClick={(event) => this.handleClick('seven')} variant="outlined">7</Button>
-                    <Button onClick={(event) => this.handleClick('eight')} variant="outlined">8</Button>
-                    <Button onClick={(event) => this.handleClick('nine')} variant="outlined">9</Button>
-                    <Button onClick={(event) => this.handleClick('addition')} variant="outlined">+</Button>
+                    <Button onClick={(event) => this.handleClick('7')} variant="outlined">7</Button>
+                    <Button onClick={(event) => this.handleClick('8')} variant="outlined">8</Button>
+                    <Button onClick={(event) => this.handleClick('9')} variant="outlined">9</Button>
+                    <Button onClick={(event) => this.handleClick('+')} variant="outlined">+</Button>
                 </div>
                 {/* third row displays: 4, 5, 6, subtraction sign */}
                 <div>
-                    <Button onClick={(event) => this.handleClick('four')} variant="outlined">4</Button>
-                    <Button onClick={(event) => this.handleClick('five')} variant="outlined">5</Button>
-                    <Button onClick={(event) => this.handleClick('six')} variant="outlined">6</Button>
-                    <Button onClick={(event) => this.handleClick('subtract')} variant="outlined">-</Button>
+                    <Button onClick={(event) => this.handleClick('4')} variant="outlined">4</Button>
+                    <Button onClick={(event) => this.handleClick('5')} variant="outlined">5</Button>
+                    <Button onClick={(event) => this.handleClick('6')} variant="outlined">6</Button>
+                    <Button onClick={(event) => this.handleClick('-')} variant="outlined">-</Button>
                 </div>
                 {/* fourth row displays: 1, 2, 3, multiplication sign */}
                 <div>
-                    <Button onClick={(event) => this.handleClick('one')} variant="outlined">1</Button>
-                    <Button onClick={(event) => this.handleClick('two')} variant="outlined">2</Button>
-                    <Button onClick={(event) => this.handleClick('three')} variant="outlined">3</Button>
-                    <Button onClick={(event) => this.handleClick('multiply')} variant="outlined">*</Button>
+                    <Button onClick={(event) => this.handleClick('1')} variant="outlined">1</Button>
+                    <Button onClick={(event) => this.handleClick('2')} variant="outlined">2</Button>
+                    <Button onClick={(event) => this.handleClick('3')} variant="outlined">3</Button>
+                    <Button onClick={(event) => this.handleClick('*')} variant="outlined">*</Button>
                 </div>
                 {/* fifth row displays: 0, period, equals, division sign */}
                 <div>
-                    <Button onClick={(event) => this.handleClick('zero')} variant="outlined">0</Button>
-                    <Button onClick={(event) => this.handleClick('dot')} variant="outlined">.</Button>
-                    <Button onClick={(event) => this.handleClick('equals')} variant="outlined">=</Button>
-                    <Button onClick={(event) => this.handleClick('division')} variant="outlined">/</Button>
+                    <Button onClick={(event) => this.handleClick('0')} variant="outlined">0</Button>
+                    <Button onClick={(event) => this.handleClick('.')} variant="outlined">.</Button>
+                    <Button onClick={(event) => this.handleClick('=')} variant="outlined">=</Button>
+                    <Button onClick={(event) => this.handleClick('/')} variant="outlined">/</Button>
                 </div>
                 <div>
                     <TextField value={this.state.output} variant="outlined" />
