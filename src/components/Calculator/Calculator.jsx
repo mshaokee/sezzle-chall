@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 //MUI
 import { TextField, Button, Typography } from '@material-ui/core';
@@ -7,13 +8,13 @@ class Calculator extends Component {
 
     componentDidMount() {
         console.log('Calculator loaded.');
+
     };//end
 
     //states
     state = {
         input: '',
-        output: '',
-        history: '',
+        output: ''
     };//end state
 
     //handleClick for numbers
@@ -29,6 +30,12 @@ class Calculator extends Component {
                 let answer = '';
                 try {
                     answer = eval(this.state.input);
+                    this.props.dispatch({
+                        type: 'add_history',
+                        payload: {
+                            output: answer
+                        }
+                    })
                 }
                 catch (err) {
                     this.setState({ input: 'ERROR' });
@@ -48,6 +55,12 @@ class Calculator extends Component {
             //if none of the above do the math
         else
             this.setState({ input: this.state.input += value })
+            // this.props.dispatch({
+            //     type: 'add_history',
+            //     payload: {
+            //         output: this.state.output
+            //     }
+            // })
         return;
     };//end handleClick
 
@@ -87,15 +100,9 @@ class Calculator extends Component {
                     <Button onClick={(event) => this.handleClick('=')} variant="outlined">=</Button>
                     <Button onClick={(event) => this.handleClick('/')} variant="outlined">/</Button>
                 </div>
-                <div>
-                    <TextField value={this.state.output} variant="outlined" />
-                </div>
-                <div>
-                    <Typography>History: </Typography>
-                </div>
             </div>
         )
     };//end render
 };//end class
 
-export default Calculator;
+export default connect()(Calculator);

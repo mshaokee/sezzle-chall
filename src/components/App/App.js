@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import {connect} from 'react-redux';
 
 //imports
 import Calculator from '../Calculator/Calculator';
+import History from '../History/History';
 
 //MUI
 import {Typography} from '@material-ui/core';
@@ -13,9 +15,10 @@ class App extends Component {
       <div>
         <Typography variant="h2">Sezzle Code Challenge</Typography>
         <Calculator />
+        <History />
       </div>
     )
   };
 };//end class
 
-export default App;
+export default connect()(App);
