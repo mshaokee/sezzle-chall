@@ -7,38 +7,47 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 
-// import rootReducer from './redux/reducers';
-// import rootSaga from './redux/sagas';
-
-import {takeEvery, put} from 'redux-saga/effects';
+import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
-
 
 const sagaMiddleware = createSagaMiddleware();
 
 //reducers
-
+function* fetchHistory() {
+  console.log('-------> history GET');
+  try {
+    const response = yield axios.get('/history');
+    console.log('GET HISTORY HERE', response.data);
+    yield put({
+      type: 'get_history',
+      payload: response.data
+    })
+  } catch (err) {
+    console.log(err);
+  }
+};//end fetchHistory
 
 //rootSaga
 function* rootSaga() {
   yield takeEvery('add_history', addHistory);
+  yield takeEvery('fetch_history', fetchHistory);
 };//end sagas
 
 //sagas
 function* addHistory(action) {
   console.log('-------> in addHistory', action.payload.output);
   let history = action.payload.output
-  // try {
-  //   const response = yield axios.post('/history', {history: history});
-  //   console.log('history is:', response);
-  // }catch(err){
-  //   console.log(err)
-  // }
+  try {
+    yield axios.post('/history', { history: history });
+    console.log('adding history here', history);
+  } catch (err) {
+    console.log('did not make it to axios.post', err)
+  }
 }
 
 const storeInstance = createStore(
   combineReducers({
-
+    fetchHistory,
   }),
   applyMiddleware(sagaMiddleware)
 );

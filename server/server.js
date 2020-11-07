@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 5000;
 
 //server files -- middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('build'));
 
 //require routers
