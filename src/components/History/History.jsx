@@ -18,7 +18,7 @@ class History extends Component {
                 <ul>
                    {this.props.reduxState.calcHistory.map((History, index) => {
                        return(
-                           <li key={index}>{History.history}</li>
+                           <li key={index}>{History.equation} {'='} {History.history}</li>
                        )
                    })}
                 </ul>

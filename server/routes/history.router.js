@@ -21,11 +21,12 @@ router.get('/', (req, res) => {
 
 // POST
 router.post('/', (req, res) => {
-    console.log('in /history POST', req.body);
+    console.log('in /history POST', req.body.equation);
     let history = req.body.history;
-    let queryString = `INSERT INTO "history" ("history")
-                        VALUES ($1)`;
-    pool.query(queryString, [history]).then((result) => {
+    let equation = req.body.equation;
+    let queryString = `INSERT INTO "history" ("history", "equation")
+                       VALUES ($1, $2)`;
+    pool.query(queryString, [history, equation]).then((result) => {
         res.sendStatus(201);
     }).catch((err) => {
         console.log(err);

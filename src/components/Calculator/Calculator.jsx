@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 //MUI
 import { TextField, Button } from '@material-ui/core';
@@ -13,7 +13,8 @@ class Calculator extends Component {
     //states
     state = {
         input: '',
-        output: ''
+        output: '',
+        equation: '',
     };//end state
 
     //handleClick for numbers
@@ -26,11 +27,13 @@ class Calculator extends Component {
         if (value === '=') {
             if (this.state.input !== '') {
                 let answer = '';
+                let equation = this.state.equation;
                 try {
                     answer = eval(this.state.input);
                     this.props.dispatch({
                         type: 'add_history',
                         payload: {
+                            equation: equation,
                             output: answer
                         }
                     })
@@ -38,11 +41,11 @@ class Calculator extends Component {
                 catch (err) {
                     this.setState({ input: 'ERROR' });
                 }
-                if (answer === undefined) {
-                    this.setState({ input: 'ERROR' });
-                }
-                else
-                    this.setState({ input: answer, output: '' });
+                // if (answer === undefined) {
+                //     this.setState({ input: 'ERROR' });
+                // }
+                // else
+                //     this.setState({ input: answer, output: '' });
             }
             //reload page upon calculation
             window.location.reload(false);
@@ -52,9 +55,15 @@ class Calculator extends Component {
             this.setState({ input: '', output: '' });
             return;
         }
-            //if none of the above do the math
+        //if none of the above do the math
         else
-            this.setState({ input: this.state.input += value })
+            console.log('this is happening', this.state.input);
+        this.setState({
+            input: this.state.input += value,
+            //test
+            equation: this.state.input,
+            //test
+        })
         return;
     };//end handleClick
 

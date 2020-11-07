@@ -37,12 +37,13 @@ function* rootSaga() {
 
 //sagas
 function* addHistory(action) {
-  console.log('-------> in addHistory', action.payload.output);
+  console.log('-------> in addHistory', action.payload.equation, '=', action.payload.output);
   //this function send data to our database
   let history = action.payload.output
+  let equation = action.payload.equation
   try {
-    yield axios.post('/history', { history: history });
-    console.log('adding history here', history);
+    yield axios.post('/history', { history: history, equation });
+    console.log('adding history here', history, 'and equation', equation);
   } catch (err) {
     console.log('did not make it to axios.post', err)
   }
