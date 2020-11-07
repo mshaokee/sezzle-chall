@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 //MUI
-import { TextField, Button, Typography } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 class Calculator extends Component {
 
     componentDidMount() {
         console.log('Calculator loaded.');
-
     };//end
 
     //states
@@ -23,7 +22,6 @@ class Calculator extends Component {
         //if else statements for on clicks of numbers/symbols
         //set value set to our designated number/symbol
         let value = event;
-
         //if value is set to equals
         if (value === '=') {
             if (this.state.input !== '') {
@@ -46,6 +44,8 @@ class Calculator extends Component {
                 else
                     this.setState({ input: answer, output: '' });
             }
+            //reload page upon calculation
+            window.location.reload(false);
             return;
             //if value is set to clear, erase
         } else if (value === 'clear') {
@@ -55,12 +55,6 @@ class Calculator extends Component {
             //if none of the above do the math
         else
             this.setState({ input: this.state.input += value })
-            // this.props.dispatch({
-            //     type: 'add_history',
-            //     payload: {
-            //         output: this.state.output
-            //     }
-            // })
         return;
     };//end handleClick
 
@@ -105,4 +99,5 @@ class Calculator extends Component {
     };//end render
 };//end class
 
+//connect to redux
 export default connect()(Calculator);

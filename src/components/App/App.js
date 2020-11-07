@@ -21,4 +21,5 @@ class App extends Component {
   };
 };//end class
 
+//connect to redux
 export default connect()(App);

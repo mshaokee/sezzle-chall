@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 
+//store and middleware
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
@@ -15,6 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 //reducers
 function* fetchHistory() {
   console.log('-------> history GET');
+  //this function gets from the saga and sends to the reducer
   try {
     const response = yield axios.get('/history');
     console.log('GET HISTORY HERE', response.data);
@@ -36,6 +38,7 @@ function* rootSaga() {
 //sagas
 function* addHistory(action) {
   console.log('-------> in addHistory', action.payload.output);
+  //this function send data to our database
   let history = action.payload.output
   try {
     yield axios.post('/history', { history: history });
@@ -47,6 +50,7 @@ function* addHistory(action) {
 
 //store reducer
 const calcHistory = (state = [], action) => {
+  //this reducer holds our recent 10 calculations
   if(action.type === 'get_history'){
     return action.payload;
   }

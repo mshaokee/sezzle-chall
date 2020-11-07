@@ -5,7 +5,9 @@ const pool = require('../modules/pool');
 // GET
 router.get('/', (req, res) => {
     console.log('in /history GET');
-    let queryString = `SELECT * FROM "history"`;
+    let queryString = `SELECT * FROM "history"
+                       ORDER BY "id" DESC
+                       LIMIT 10;`;
     //order by most recent 10 later
     pool.query(queryString).then((result) => {
         res.send(result.rows);
