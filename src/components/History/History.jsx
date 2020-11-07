@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class History extends Component {
 
     componentDidMount() {
-        console.log('History loaded...');
+        console.log('History loaded...', this.props.reduxState.calcHistory);
         this.props.dispatch({
             type: 'fetch_history'
         })
@@ -16,7 +16,11 @@ class History extends Component {
             <div>
                 <p>History</p>
                 <ul>
-                   {JSON.stringify(this.props.reduxState.fetchHistory)}
+                   {this.props.reduxState.calcHistory.map((History, index) => {
+                       return(
+                           <li key={index}>{History.history}</li>
+                       )
+                   })}
                 </ul>
             </div>
         )

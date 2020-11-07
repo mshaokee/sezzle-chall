@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
     //order by most recent 10 later
     pool.query(queryString).then((result) => {
         res.send(result.rows);
+        console.log('here are the results', result.rows);
     }).catch((error) => {
         alert('Error in GET history');
         console.log(error);

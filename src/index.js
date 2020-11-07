@@ -45,9 +45,17 @@ function* addHistory(action) {
   }
 }
 
+//store reducer
+const calcHistory = (state = [], action) => {
+  if(action.type === 'get_history'){
+    return action.payload;
+  }
+  return state;
+};// end calcHistory reducer
+
 const storeInstance = createStore(
   combineReducers({
-    fetchHistory,
+    calcHistory,
   }),
   applyMiddleware(sagaMiddleware)
 );
