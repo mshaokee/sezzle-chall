@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
 
 //MUI
 import { TextField, Button } from '@material-ui/core';
@@ -41,14 +42,9 @@ class Calculator extends Component {
                 catch (err) {
                     this.setState({ input: 'ERROR' });
                 }
-                // if (answer === undefined) {
-                //     this.setState({ input: 'ERROR' });
-                // }
-                // else
-                //     this.setState({ input: answer, output: '' });
             }
-            //reload page upon calculation
-            window.location.reload(false);
+            //reload page upon calculation (side** if I were using routers I could just push the page back)
+            // window.location.reload(false);
             return;
             //if value is set to clear, erase
         } else if (value === 'clear') {
@@ -60,9 +56,7 @@ class Calculator extends Component {
             console.log('this is happening', this.state.input);
         this.setState({
             input: this.state.input += value,
-            //test
             equation: this.state.input,
-            //test
         })
         return;
     };//end handleClick

@@ -10,6 +10,7 @@ import History from '../History/History';
 import {Typography} from '@material-ui/core';
 
 class App extends Component {
+
   render() {
     return (
       <div>
