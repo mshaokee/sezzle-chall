@@ -59,16 +59,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //server static files
 app.use(express.static('build'));
 
-//heroku
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build/index.html'));
-});//end
-
 //require routers
 const historyRouter = require('./routes/history.router');
 
 //ROUTES
 app.use('/history', historyRouter);
+
+//heroku
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});//end
 
 //Listen
 app.listen(PORT, () => {

@@ -24,7 +24,7 @@ if (process.env.DATABASE_URL) {
         password: process.env.DATABASE_SECRET || null,
         host: process.env.DATABASE_SERVER || 'localhost',
         port: process.env.DATABASE_PORT || 5432,
-        database: process.env.DATABASE_NAME || 'd3aaqtrv41qs9f',
+        database: process.env.DATABASE_NAME || 'sezzle_chall',
         max: 10,
         idleTimeoutMillis: 30000,
     };
