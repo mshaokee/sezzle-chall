@@ -4,21 +4,52 @@ const app = express();
 //run heroku or 5000
 const PORT = process.env.PORT || 5000;
 
-//TEST
-const WebSocket = require('ws');
+// //TEST to connect to websocket using websocket http
+// const webSocketsServerPort = 8000;
+// const webSocketServer = require('websocket').server;
+// const http = require('http');
+// // spinning the http server and websocket server
+// const server = http.createServer();
+// server.listen(webSocketsServerPort);
+// console.log('listening on port 8000');
 
-const wss = new WebSocket.Server({ port: 3030 });
+// const wsServer = new webSocketServer({
+//     httpServer: server
+// });
 
-wss.on('connection', function connection(ws) {
-    ws.on('message', function incoming(data) {
-        wss.clients.forEach(function each(client) {
-            if (client !== ws && client.readyState === WebSocket.OPEN) {
-                client.send(data);
-            }
-        });
-    });
-});
-//TEST
+// const clients = {};
+
+//generates unique id for users
+// const getUniqueId = () => {
+//     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+//     return s4() + s4() + '-' + s4();
+// }
+
+// wsServer.on('request', function(request) {
+//     let userID = getUniqueID();
+//     console.log((new Date()) + ' Received a new connection from origin ' + request.origin + '.');
+
+//     //accept request
+//     const connection = request.accept(null, request.origin);
+//     //store connection
+//     clients[userID] = connection;
+//     console.log('connected: ' + userID + ' in ' + Object.getOwnPropertyNames(clients));
+
+//     //on message handler
+//     connection.on('message', function(message) {
+//         if (message.type === 'utf8') {
+//             console.log('Received Message: ', message.utf8Data);
+//             //broadcasting message to connected clients
+//         }
+//         for(key in clients) {
+//             clients[key].sendUTF(message.utf8Data);
+//             console.log('sent Message to: ', clients[key]);
+//         }
+//     })
+// });//end
+
+
+//end new test
 
 //server files -- middleware
 app.use(bodyParser.json());
