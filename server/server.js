@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 //run heroku or 5000
 const PORT = process.env.PORT || 5000;
+//heroku require path
+const path = require('path');
 
 // //TEST to connect to websocket using websocket http
 // const webSocketsServerPort = 8000;
@@ -54,7 +56,13 @@ const PORT = process.env.PORT || 5000;
 //server files -- middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+//server static files
 app.use(express.static('build'));
+
+//heroku
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});//end
 
 //require routers
 const historyRouter = require('./routes/history.router');
