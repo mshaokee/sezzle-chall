@@ -10,10 +10,8 @@ import History from '../History/History';
 import { Typography } from '@material-ui/core';
 
 // Websocket
-// new connection
-import { w3cwebsocket } from 'websocket';
-const client = new w3cwebsocket('ws://localhost:3000');
-// let socket = new WebSocket('ws://localhost:3000');
+
+let client = new WebSocket('ws://localhost:3000');
 
 class App extends Component {
 
@@ -21,33 +19,33 @@ class App extends Component {
     dataFromServer: '',
   }
 
+
+
   componentDidMount() {
     console.log('App loaded.......?');
+
+    try {
+      client.send(this.state.dataFromServer);
+    } catch (err) {
+      console.log(err);
+    }
 
     client.onopen = () => {
       console.log('------->WebSocket Client Connected');
     }
 
     client.onmessage = () => {
-      console.log('ajdfklajfkdlasjfkladsjklsafjklajfdklsa');
+      console.log('message sent');
     }
 
-    // this.ws.onopen = () => {
-    //   // on connecting, do nothing but log it to the console
-    //   console.log('connected to websocket')
-    // }
+    client.onclose = () => {
+      console.log('CLOSED!');
+    }
 
-    // this.ws.onmessage = evt => {
-    //   // on receiving a number, add it to the list of history
-    //   const history = JSON.parse(evt.data)
-    //   this.setState({ dataFromServer: this.props.reduxState })
-    //   console.log(history);
-    // }
+    client.onerror = () => {
+      console.log('SOMETHING IS WRONG');
 
-    // this.ws.onclose = () => {
-    //   console.log('disconnected')
-    //   // automatically try to reconnect on connection loss
-    // }
+    }
 
   };//end
 
