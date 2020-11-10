@@ -9,10 +9,10 @@ import History from '../History/History';
 //MUI
 import { Typography } from '@material-ui/core';
 
-//Websocket
-//new connection
-// import { w3cwebsocket } from 'websocket';
-// const client = new w3cwebsocket('ws://localhost:3000');
+// Websocket
+// new connection
+import { w3cwebsocket } from 'websocket';
+const client = new w3cwebsocket('ws://localhost:3000');
 // let socket = new WebSocket('ws://localhost:3000');
 
 class App extends Component {
@@ -24,13 +24,13 @@ class App extends Component {
   componentDidMount() {
     console.log('App loaded.......?');
 
-    // socket.onopen = () => {
-    //   console.log('------->WebSocket Client Connected');
-    // }
+    client.onopen = () => {
+      console.log('------->WebSocket Client Connected');
+    }
 
-    // socket.onmessage = () => {
-    //   console.log('ajdfklajfkdlasjfkladsjklsafjklajfdklsa');
-    // }
+    client.onmessage = () => {
+      console.log('ajdfklajfkdlasjfkladsjklsafjklajfdklsa');
+    }
 
     // this.ws.onopen = () => {
     //   // on connecting, do nothing but log it to the console

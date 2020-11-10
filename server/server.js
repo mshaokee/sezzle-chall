@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 //heroku require path
 const path = require('path');
 
-// //TEST to connect to websocket using websocket http
+//TEST to connect to websocket using websocket http
 // const webSocketsServerPort = 8000;
 // const webSocketServer = require('websocket').server;
 // const http = require('http');
@@ -21,8 +21,8 @@ const path = require('path');
 
 // const clients = {};
 
-//generates unique id for users
-// const getUniqueId = () => {
+// // generates unique id for users
+// getUniqueId = () => {
 //     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 //     return s4() + s4() + '-' + s4();
 // }
