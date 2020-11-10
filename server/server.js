@@ -6,14 +6,11 @@ const PORT = process.env.PORT || 5000;
 //heroku require path
 const path = require('path');
 
-
-
-
-//end new test
+// const io = require('socket.io').listen(server);
 
 //server files -- middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 //server static files
 app.use(express.static('build'));
 
@@ -22,6 +19,10 @@ const historyRouter = require('./routes/history.router');
 
 //ROUTES
 app.use('/history', historyRouter);
+//test
+app.use('/', (req, res) => {
+    res.send('prep for socket.io');
+})
 
 //heroku
 app.get('/*', (req, res) => {

@@ -4,12 +4,7 @@ import { connect } from 'react-redux';
 class History extends Component {
 
     componentDidMount() {
-        console.log('History loaded...', this.props.reduxState.calcHistory);
-
-        //get history from database
-        this.props.dispatch({
-            type: 'fetch_history'
-        })
+        console.log('History mounted');
     };//end
 
     render() {
