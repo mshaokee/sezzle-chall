@@ -16,29 +16,26 @@ import { Typography } from '@material-ui/core';
 class App extends Component {
 
   state = {
-    // history: this.props.reduxState,
-  }
+      history: [],
+      results: "",
+    }
 
   componentDidMount() {
     console.log('App loaded.......?');
     //get history from database
+    this.receiveHistory();
+  };//end
+
+  receiveHistory = () => {
     this.props.dispatch({
       type: 'fetch_history'
     })
-    console.log('this is our history: ', );
-    
-
-    // client.onopen = () => {
-    //   console.log('------->WebSocket Client Connected');
-    // }
-    // client.onmessage = () => {
-    //   console.log('message sent');
-    // }
-    // client.onclose = () => {
-    //   console.log('CLOSED!');
-    // }
-
+    this.setState({ history: this.props.reduxState.calcHistory });
   };//end
+
+  // send = () => {
+  //   socket.emit("new output");
+  // }
 
   render() {
     return (
@@ -46,7 +43,7 @@ class App extends Component {
         <Typography variant="h2">Sezzle Code Challenge</Typography>
         {/* websocket being sent down to child components through props*/}
         {/* I CAN SEND MY REDUX DATA DIRECTLY TO SERVER, NOW FIGURE OUT HOW TO */}
-        {/* {JSON.stringify(this.state.history.history)} */}
+        {/* {JSON.stringify(this.state.history)} */}
         <Calculator />
         <History />
       </div>

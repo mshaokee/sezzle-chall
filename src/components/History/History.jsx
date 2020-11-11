@@ -24,5 +24,4 @@ class History extends Component {
 };//end History
 
 const putPropsOnState = reduxState => ({ reduxState })
-
 export default connect(putPropsOnState)(History);
