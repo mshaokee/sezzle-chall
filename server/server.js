@@ -18,9 +18,6 @@ const historyRouter = require('./routes/history.router');
 //ROUTES
 app.use('/history', historyRouter);
 //test
-// app.use('/', (req, res) => {
-//     res.send('prep for socket.io');
-// })
 
 //heroku
 app.get('/*', (req, res) => {

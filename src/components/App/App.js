@@ -33,10 +33,6 @@ class App extends Component {
     this.setState({ history: this.props.reduxState.calcHistory });
   };//end
 
-  // send = () => {
-  //   socket.emit("new output");
-  // }
-
   render() {
     return (
       <div>
