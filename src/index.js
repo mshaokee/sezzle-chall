@@ -13,6 +13,12 @@ import axios from 'axios';
 
 const sagaMiddleware = createSagaMiddleware();
 
+//rootSaga
+function* rootSaga() {
+  yield takeEvery('add_history', addHistory);
+  yield takeEvery('fetch_history', fetchHistory);
+};//end sagas
+
 //reducers
 function* fetchHistory() {
   console.log('-------> history GET');
@@ -28,12 +34,6 @@ function* fetchHistory() {
     console.log(err);
   }
 };//end fetchHistory
-
-//rootSaga
-function* rootSaga() {
-  yield takeEvery('add_history', addHistory);
-  yield takeEvery('fetch_history', fetchHistory);
-};//end sagas
 
 //sagas
 function* addHistory(action) {
