@@ -13,18 +13,6 @@ class Calculator extends Component {
         equation: '',
     };//end state
 
-    //TEST//
-    sendHistory = () => {
-        const {websocket} = this.props;
-        //websocket passed
-        try {
-            websocket.send({equation: this.state.equation, output: this.state.output});
-        } catch (err) {
-            console.log(err);
-        }
-    }
-    //TEST//
-
     //handleClick for numbers
     handleClick = (event) => {
         console.log('number is:', event, 'input', this.state.input);
