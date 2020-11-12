@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 
 //MUI
 import { TextField, Button } from '@material-ui/core';
 
 class Calculator extends Component {
-
-    componentDidMount() {
-        console.log('Calculator loaded.');
-    };//end
 
     //states
     state = {
@@ -55,8 +50,6 @@ class Calculator extends Component {
                     this.setState({ input: 'ERROR' });
                 }
             }
-            //reload page upon calculation (side** if I were using routers I could just push the page back)
-            // window.location.reload(false);
             return;
             //if value is set to clear, erase
         } else if (value === 'clear') {

@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 
 class History extends Component {
 
-    componentDidMount() {
-        console.log('History mounted');
-    };//end
-
     render() {
         return (
             <div>

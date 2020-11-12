@@ -17,7 +17,6 @@ const historyRouter = require('./routes/history.router');
 
 //ROUTES
 app.use('/history', historyRouter);
-//test
 
 //heroku
 app.get('/*', (req, res) => {

@@ -21,7 +21,6 @@ class App extends Component {
     }
 
   componentDidMount() {
-    console.log('App loaded.......?');
     //get history from database
     this.receiveHistory();
   };//end
@@ -37,9 +36,6 @@ class App extends Component {
     return (
       <div>
         <Typography variant="h2">Sezzle Code Challenge</Typography>
-        {/* websocket being sent down to child components through props*/}
-        {/* I CAN SEND MY REDUX DATA DIRECTLY TO SERVER, NOW FIGURE OUT HOW TO */}
-        {/* {JSON.stringify(this.state.history)} */}
         <Calculator />
         <History />
       </div>
