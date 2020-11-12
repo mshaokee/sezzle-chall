@@ -5,7 +5,7 @@ The goal is to build a calculator app that updates immediately upon calculation.
 
 ## NOTES - Current 11/11/2020
 
-Had trouble initiating WebSocket to operate with redux data.
+Had trouble initiating WebSocket to operate with redux data. After updating homebrew, postgresql was upgraded to v13.0 and I cannot run it for some reason at this time and cannot spin up servers. Looking into..
 
 ## Prerequisites
 Software required to run this application:
